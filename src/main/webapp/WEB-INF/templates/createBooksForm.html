@@ -25,34 +25,34 @@
 	<main role="main">
 		<hr>
 		<div class="container">
-			<a class="btn btn-primary" th:href="@{/}">Logout</a>
+
 			<div class="card">
 				<h4 class="card-header">
-					<strong>Login</strong>
+					<strong>Registration</strong>
 				</h4>
 				<div class="card-body">
-					<form th:action="@{/login}" method="post">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="name">User Name::</label> <input type="text"
-										class="form-control" id="name" name="name"
-										placeholder="write your name" required="required">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="Password">Password</label> <input type="password"
-										class="form-control" id="password" name="password"
-										placeholder="write your  password" required="required">
-								</div>
-							</div>
-						</div>
-
-						<hr>
-						<button type="submit" title="Login User." class="btn btn-primary">Login</button>
+					<form action="#" th:action="@{/save}" th:object="${form}"
+						method="post">
+						<fieldset>
+							<input type="submit" id="submitButton" th:value="Save"> <input
+								type="reset" id="resetButton" name="reset" th:value="Reset" />
+							<table>
+								<thead>
+									<tr>
+										<th>Title</th>
+										<th>Author</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="book, itemStat : *{books}">
+										<td><input
+											th:field="*{books[__${itemStat.index}__].title}" /></td>
+										<td><input
+											th:field="*{books[__${itemStat.index}__].author}" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
 					</form>
 				</div>
 			</div>

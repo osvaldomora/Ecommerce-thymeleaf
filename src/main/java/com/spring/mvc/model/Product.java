@@ -1,6 +1,9 @@
 package com.spring.mvc.model;
 
+
+
 public class Product {
+	
 	
 	private Integer productId;
 	private String productName;
@@ -8,6 +11,39 @@ public class Product {
 	private Long productPrice;
 	private Long productQuantity;
 	private String imagen="no-image.png";
+	private Boolean enabled;
+	
+	
+	
+	public Product(Integer productId, String productName, String productCategory, Long productPrice,
+			Long productQuantity, String imagen, Boolean enabled) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productCategory = productCategory;
+		this.productPrice = productPrice;
+		this.productQuantity = productQuantity;
+		this.imagen = imagen;
+		this.enabled = enabled;
+	}
+	
+	public Product(Integer productId, String productName, String productCategory, Long productPrice,
+			Long productQuantity, String imagen) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productCategory = productCategory;
+		this.productPrice = productPrice;
+		this.productQuantity = productQuantity;
+		this.imagen = imagen;
+		
+	}
+	
+	public Product() {
+	
+	}
+
+
 	public Integer getProductId() {
 		return productId;
 	}
@@ -46,11 +82,24 @@ public class Product {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
+	
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productCategory="
-				+ productCategory + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity + "]";
+				+ productCategory + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity
+				+ ", imagen=" + imagen + ", enabled=" + enabled + "]";
 	}
+
+	
 
 
 }

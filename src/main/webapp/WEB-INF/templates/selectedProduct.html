@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Products List</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	
+	<h1 class="text-primary">Products List</h1>
+	<form th:action="@{/getProducts}" method="get">
+		
+		<table class="table table-striped table-bordered ">
+			<tr>
+				<th>Product Name</th>
+				<th>Product Category</th>
+				<th>Price</th>
+				<th>Image</th>
+
+			</tr>
+
+			<tr th:each="prod: ${productsList} ">
+
+				<td th:text="${prod.productName}"></td>
+				<td th:text="${prod.productCategory}"></td>
+				<td th:text="${prod.productPrice}"></td>
+
+				<td><img
+					th:src="@{/resources/images/{img} ( img=${prod.imagen} )  }"
+					width="136" height="136"></td>
+
+
+			</tr>
+
+		</table>
+		<button type="submit" title="View Cart." class="btn btn-primary">Buy
+			</button>
+	</form>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>

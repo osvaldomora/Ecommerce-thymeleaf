@@ -1,6 +1,7 @@
 package com.spring.mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class UserController {
 		return "registration";
 	}
 	
-	@PostMapping("/registration")//@ModelAttribute received object from de view, model is use to dend data to view
+	@PostMapping("/registration")//@ModelAttribute received object from de view, model is use to send data to view
 	public String doRegistration(@ModelAttribute User user, Model model){
 		System.out.println("before save user:" + user);
 		userService.saveUser(user);
@@ -50,6 +51,14 @@ public class UserController {
 	sesion.setAttribute("usuario", user);
 	
 	return "redirect:/getProducts";
+	}
+	
+	@RequestMapping("/logout")
+	public String logOut(Model model,HttpServletRequest request) {
+		System.out.println("I will close sesion");
+		HttpSession sesion = request.getSession();
+		sesion.removeAttribute("usuario");
+		return "login";
 	}
 
 }

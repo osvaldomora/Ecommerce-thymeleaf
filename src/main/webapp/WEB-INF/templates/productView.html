@@ -1,51 +1,101 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Products List</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="favicon.ico">
 
+<title>Eccomerce-Osvaldo</title>
+
+<link th:href="@{/resources/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+
+<link th:href="@{/resources/bootstrap/css/jumbotron.css}"
+	rel="stylesheet">
+<link th:href="@{/resources/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
 </head>
+
 <body>
-	<img th:src="@{/resources/images/logo.png}" width="136" height="136" >
-	<h1 class="text-primary">Products List</h1>
 
-	 <table class="table table-striped table-bordered ">
-	  <tr>
-	  	<th>Product Name</th>
-	    <th>Product Category</th>
-	    <th>Price</th>
-	    <th>Available Quantity</th>
-	    <th>Image</th>
 
-	  </tr>
-	  
-	  <tr th:each="prod : ${productsList} ">
-	    
-	    <td th:text="${prod.productName}"></td>
-	    <td th:text="${prod.productCategory}"></td>
-	    <td th:text="${prod.productPrice}"></td>
-	    <td th:text="${prod.productQuantity}"></td>
-	    <td>
-	    	<img th:src="@{/resources/images/{img} ( img=${prod.imagen} )  }" width="136" height="136" >
-	    </td>
-	    <!-- 
-	    <td th:text="${vacante.destacado}"></td>	    
-	    <td th:text="${vacante.destacado == 1 ? 'Si' : 'No'}"></td>
-	    -->
-<!-- 	    <td>	     -->
-<!-- 	    	<span th:if="${vacante.destacado==1}" class="badge badge-success">Si</span> -->
-<!-- 	    	<span th:unless="${vacante.destacado==1}" class="badge badge-danger">No</span>	     -->
-<!-- 	    </td>  -->
-<!-- 	    <td> -->
-<!-- 	    	<a th:href="@{/vacantes/view/{id} (id=${vacante.id})  }" class="btn btn-success">Detalle</a> -->
-<!-- 	    </td> -->
+	<main role="main">
+	      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h3>search product.</h3>
+         
+          <form class="form-inline">
+            <input type="text" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Search product">&nbsp;
 
-	    
-	    	  
-	  </tr>
-	 
-	</table> 
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+		<hr>
+		<div class="container">
+              <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+			<div class="card">
+				<h4 class="card-header">
+					<strong>Registration</strong>
+				</h4>
+				<div class="card-body">
+					<form th:action="@{/getSelectProducts}" method="post"
+						th:object="${productDto}">
+						<div class="row">
+							<table class="table table-striped table-bordered ">
+								<tr>
+									<th></th>
+									<th>Product Name</th>
+									<th>Product Category</th>
+									<th>Price</th>
+									<th>Available Quantity</th>
+									<th>Image</th>
+									<th>Choose</th>
+
+								</tr>
+								<tr th:each="aliasProd, itemStat : *{products}">
+									<td><input type="hidden"
+										th:field="*{products[__${itemStat.index}__].productId}"></td>
+									<td><input
+										th:field="*{products[__${itemStat.index}__].productName}"></td>
+									<td><input
+										th:field="*{products[__${itemStat.index}__].productCategory}"></td>
+									<td><input
+										th:field="*{products[__${itemStat.index}__].productPrice}"></td>
+									<td><input disabled
+										th:field="*{products[__${itemStat.index}__].productQuantity}"></td>
+									<td><img
+										th:src="@{/resources/images/{img} ( img=*{products[__${itemStat.index}__].imagen})  }"
+										width="136" height="136"></td>
+									<td><input type="checkbox"
+										th:field="*{products[__${itemStat.index}__].enabled}"
+										th:value="*{products[__${itemStat.index}__].enabled}"></input>
+									</td>
+
+								</tr>
+
+
+							</table>
+
+						</div>
+						<button type="submit" title="View Cart." class="btn btn-primary">View
+							Cart</button>
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script>
+
 </body>
 </html>

@@ -7,5 +7,7 @@ import com.spring.mvc.model.Product;
 public interface ProductService {
 
 	List<Product> getProductList();
+	
+	List<Product> getSelectedProducts(List<Product> products);
 
 }
