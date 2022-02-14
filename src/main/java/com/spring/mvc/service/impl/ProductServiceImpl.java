@@ -1,5 +1,6 @@
 package com.spring.mvc.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,8 @@ import com.spring.mvc.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService, BuyProductDao {
-
+	List<Product> productFilter = new ArrayList<>();
+	
 	@Autowired
     private  ProductDao productDao;
 	@Autowired
@@ -27,11 +29,17 @@ public class ProductServiceImpl implements ProductService, BuyProductDao {
 
 	@Override
 	public List<Product> getSelectedProducts(List<Product> products) {
-		List<Product> productFilter = products.stream().filter(x -> x.getEnabled()).collect(Collectors.toList());
+		productFilter = products.stream().filter(x -> x.getEnabled()).collect(Collectors.toList());
 		System.out.println(productFilter.size());
 		return productFilter;
 	}
-
+	
+	@Override
+	public void deleteProducts() {
+		//productFilter = null;
+		productFilter.removeAll(productFilter);
+	}
+	
 	@Override
 	public void saveBuyProducts(List<Product> products) {
 		

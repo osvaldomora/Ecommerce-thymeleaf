@@ -10,4 +10,6 @@ public interface BuyProductDao {
 	
 	public List<Product> getBuyProducts();
 
+	void deleteProducts();
+
 }

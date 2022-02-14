@@ -12,7 +12,7 @@
 <body>
 	
 	<h1 class="text-primary">Products List</h1>
-	<form th:action="@{/getProducts}" method="get">
+	<form th:action="@{/buyProducts}" method="POST">
 		
 		<table class="table table-striped table-bordered ">
 			<tr>
@@ -39,10 +39,47 @@
 		</table>
 		<button type="submit" title="View Cart." class="btn btn-primary">Buy
 			</button>
+			
+		<button type="button" id="empty_cart" title="Empty Cart." class="btn btn-primary">Empty cart
+			</button>
 	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+	<script>
+		$(function () {
+		    console.log("javascript loaded");
+		    $("#empty_cart").click(function(){
+		    	/* let result = "";
+			    $.post('/emptyCart', function(responseText) {
+					console.log(responseText)
+				}); */
+			    $.ajax({
+	    	      type: "GET",
+	    	      url: 'emptyCart',
+	    	      success: function (data) {
+	    	        alert(data);
+	    	      },
+	    	      error: function (xhr, statusText, err) {
+	    	        alert("error"+xhr.status);
+	    	      }
+	    	    });
+		 	   	/* $.ajax({
+		 	        type: "POST",
+		 	        url: "/rides",
+		 	        data: result,
+		 	        success: function (data){
+		 	          console.log(data)
+		 	        },
+		 	        error: function (data) {
+		 	          console.log('Error:', data);
+		 	        }
+		 	    }); */	
+		   	});
+		});
+	</script>
+	
 </body>
 </html>

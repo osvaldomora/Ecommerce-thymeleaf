@@ -47,6 +47,18 @@ public class ProductController {
 		return "selectedProduct";
 	}
 	
+	@PostMapping("buyProducts")
+	public String buyProducts(Model model) {
+		
+		return null;
+	}
+	
+	@GetMapping("/emptyCart")
+	public String emptyProducts() {
+		buyProductDao.deleteProducts();
+		
+		return "selectedProduct";
+	}
 	
 
 }
