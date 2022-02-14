@@ -60,14 +60,18 @@
 								</tr>
 								<tr th:each="aliasProd, itemStat : *{products}">
 									<td><input type="hidden"
-										th:field="*{products[__${itemStat.index}__].productId}"></td>
-									<td><input
+										th:field="*{products[__${itemStat.index}__].productId}" readonly></td>
+									<td><label th:text="*{products[__${itemStat.index}__].productName}"></label>
+										<input type="hidden"
 										th:field="*{products[__${itemStat.index}__].productName}"></td>
-									<td><input
+									<td><label th:text="*{products[__${itemStat.index}__].productCategory}"></label>
+										<input type="hidden"
 										th:field="*{products[__${itemStat.index}__].productCategory}"></td>
-									<td><input
+									<td><label th:text="*{products[__${itemStat.index}__].productPrice}"></label>
+										<input type="hidden"
 										th:field="*{products[__${itemStat.index}__].productPrice}"></td>
-									<td><input disabled
+									<td><label th:text="*{products[__${itemStat.index}__].productQuantity}"></label>
+										<input type="hidden" disabled
 										th:field="*{products[__${itemStat.index}__].productQuantity}"></td>
 									<td><img
 										th:src="@{/resources/images/{img} ( img=*{products[__${itemStat.index}__].imagen})  }"
