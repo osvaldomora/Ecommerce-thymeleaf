@@ -13,7 +13,7 @@ import com.spring.mvc.model.User;
 import com.spring.mvc.service.UserService;
 
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired

@@ -46,6 +46,8 @@ public class ProductController {
 
 		return "selectedProduct";
 	}
+	
+	
 
 	@PostMapping("/buy")
 	public String buyProducts(RedirectAttributes attributes) {
