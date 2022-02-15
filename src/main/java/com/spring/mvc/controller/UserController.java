@@ -1,9 +1,5 @@
 package com.spring.mvc.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +13,7 @@ import com.spring.mvc.model.User;
 import com.spring.mvc.service.UserService;
 
 @Controller
-//@RequestMapping("/user")
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
@@ -40,25 +36,23 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String authenticateUser(@ModelAttribute Credential credential,HttpServletRequest request) {
+	public String authenticateUser(@ModelAttribute Credential credential) {
 	User user =	userService.authenticateUser(credential.getName(), credential.getPassword());
 	if(ObjectUtils.isEmpty(user)) {
 		return "loginFailure";
 		
 	}
 	
-	HttpSession sesion = request.getSession();// session was created
-	sesion.setAttribute("usuario", user);
 	
 	return "redirect:/getProducts";
 	}
 	
-	@RequestMapping("/logout")
+/*	@RequestMapping("/logout")
 	public String logOut(Model model,HttpServletRequest request) {
 		System.out.println("I will close sesion");
 		HttpSession sesion = request.getSession();
 		sesion.removeAttribute("usuario");
 		return "login";
-	}
+	}*/
 
 }

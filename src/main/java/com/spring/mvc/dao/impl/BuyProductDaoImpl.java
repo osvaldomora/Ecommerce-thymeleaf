@@ -12,7 +12,9 @@ import com.spring.mvc.model.Product;
 @Repository
 public class BuyProductDaoImpl implements BuyProductDao{
 
-	List<Product> productsList = new ArrayList();
+	List<Product> productsList = new ArrayList<Product>();
+	
+	List<Product> backupBuyProducts = new ArrayList<Product>();
 
 	@Override
 	public void saveBuyProducts(List<Product> products) {
@@ -23,8 +25,26 @@ public class BuyProductDaoImpl implements BuyProductDao{
 
 	@Override
 	public List<Product> getBuyProducts() {
-		productsList.forEach(x->System.out.println(x));
+//		productsList.forEach(x->System.out.println(x));
 		return productsList;
+	}
+	
+	@Override
+	public void clearBuyProduct() {
+		
+		for(Product alias:productsList) {
+			backupBuyProducts.add(alias);
+		}
+		productsList = new ArrayList<Product>();
+		
+	}
+	
+	@Override
+	public List<Product> GetBuyProduct() {
+	
+		
+		return backupBuyProducts;
+		
 	}
 
 

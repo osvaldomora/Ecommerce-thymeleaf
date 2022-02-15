@@ -12,7 +12,7 @@ import com.spring.mvc.model.Product;
 import com.spring.mvc.service.ProductService;
 
 @Service
-public class ProductServiceImpl implements ProductService, BuyProductDao {
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
     private  ProductDao productDao;
@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService, BuyProductDao {
 
 	@Override
 	public List<Product> getProductList() {
-		// TODO Auto-generated method stub
+		
 		return productDao.getProducts();
 	}
 
@@ -37,13 +37,12 @@ public class ProductServiceImpl implements ProductService, BuyProductDao {
 		
 		buyProductDao.saveBuyProducts(products);
 		
-		
-		
+	
 	}
 
 	@Override
 	public List<Product> getBuyProducts() {
-		// TODO Auto-generated method stub
+		
 		return buyProductDao.getBuyProducts();
 	}
 

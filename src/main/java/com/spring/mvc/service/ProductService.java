@@ -9,5 +9,9 @@ public interface ProductService {
 	List<Product> getProductList();
 	
 	List<Product> getSelectedProducts(List<Product> products);
+	
+	public void saveBuyProducts(List<Product> products);
+	
+	public List<Product> getBuyProducts();
 
 }

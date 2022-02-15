@@ -9,5 +9,9 @@ public interface BuyProductDao {
 	public void saveBuyProducts(List<Product> products);
 	
 	public List<Product> getBuyProducts();
+	
+	public void clearBuyProduct();
+	
+	public List<Product> GetBuyProduct(); 
 
 }

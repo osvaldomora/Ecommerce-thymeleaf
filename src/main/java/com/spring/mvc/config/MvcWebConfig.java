@@ -28,7 +28,7 @@ public  class MvcWebConfig implements WebMvcConfigurer  {//extends WebMvcConfigu
 	    * */
 	   @Bean
 	   public SpringResourceTemplateResolver templateResolver() {
-		   System.out.println("IMPRIMIENDO SpringResourceTemplateResolver");
+		   System.out.println(" SpringResourceTemplateResolver");
 	      SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 	      templateResolver.setApplicationContext(applicationContext);
 	      templateResolver.setPrefix("/WEB-INF/templates/");
@@ -41,7 +41,7 @@ public  class MvcWebConfig implements WebMvcConfigurer  {//extends WebMvcConfigu
 	    * */
 	   @Bean
 	   public SpringTemplateEngine templateEngine() {
-		   System.out.println("IMPRIMIENDO SpringTemplateEngine");
+		   System.out.println(" SpringTemplateEngine");
 	      SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 	      templateEngine.setTemplateResolver(templateResolver());
 	      templateEngine.setEnableSpringELCompiler(true);
@@ -53,7 +53,7 @@ public  class MvcWebConfig implements WebMvcConfigurer  {//extends WebMvcConfigu
 	    * */
 	 
 	   public void configureViewResolvers(ViewResolverRegistry registry) {
-		   System.out.println("IMPRIMIENDO configureViewResolvers");
+		   System.out.println(" configureViewResolvers");
 	      ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 	      resolver.setTemplateEngine(templateEngine());
 	      registry.viewResolver(resolver);
