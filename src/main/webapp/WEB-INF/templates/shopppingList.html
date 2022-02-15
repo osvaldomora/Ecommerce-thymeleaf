@@ -62,7 +62,7 @@
 
 								<td th:text="${prod.productName}"></td>
 								<td th:text="${prod.productCategory}"></td>
-								<td th:text="${prod.productPrice}"></td>
+								<td class="price" th:text="${prod.productPrice}"></td>
 
 								<td><img
 									th:src="@{/resources/images/{img} ( img=${prod.imagen} )  }"
@@ -72,8 +72,14 @@
 							</tr>
 
 						</table>
+						
+						<div class="float-end">
+							<input type="number" id="total_input" readonly>
+						</div>
+						
 						<button type="submit" title="View Cart." class="btn btn-primary">Products View
 						</button>
+						
 					</form>
 
 				</div>
@@ -85,6 +91,45 @@
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script th:src="@{/resources/bootstrap/js/bootstrap.min.js}"></script>
-
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+	<script>
+		$(function () {
+			let sum = 0;
+		    console.log("javascript loaded");
+		    //var sum = 0;
+		    
+			$(".price").each(function() {
+			    var value = $(this).text();
+			    // add only if the value is number
+			    if(!isNaN(value) && value.length != 0) {
+			    	sum += parseFloat(value);
+		    	}
+			});
+			$("#total_input").val(sum);
+			
+			console.log(sum);
+		    /* $("#table_routes tr").click(function(){
+		 	    let result = '';
+		 	   	$(this).find('input[type=hidden]').each(function(){
+		 		    result += $(this).attr('name')+'='+$(this).val()+'&'
+		 		})
+		 		console.log(result);
+			    $.post('rides', result, function(responseText) {
+					console.log(responseText)
+				});
+		 	   	$.ajax({
+		 	        type: "POST",
+		 	        url: "/rides",
+		 	        data: result,
+		 	        success: function (data){
+		 	          console.log(data)
+		 	        },
+		 	        error: function (data) {
+		 	          console.log('Error:', data);
+		 	        }
+		 	    });
+		   	}); */
+		});
+	</script>
 </body>
 </html>
