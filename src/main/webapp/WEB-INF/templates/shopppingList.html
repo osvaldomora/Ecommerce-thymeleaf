@@ -52,7 +52,7 @@
 						<!-- <label >Order: </label> -->
 						<table th:each="prod: ${productsList}" class="table table-striped table-bordered ">
 							<tr>
-								<th class="text-center" colspan="4" th:text="Order:  + ${prod[0].order}"></th>
+								<th class="text-center" colspan="4" th:text="${prod[0].order}"></th>
 							</tr>
 							<tr>
 								<th>Product Name</th>
