@@ -13,7 +13,7 @@ public class Product {
 	private String imagen="no-image.png";
 	private Boolean enabled;
 	private int total;
-	private static Integer order=1;
+	private  Integer order=0;
 	
 	
 	
@@ -93,12 +93,12 @@ public class Product {
 		this.enabled = enabled;
 	}
 
-	public static Integer getOrder() {
+	public  Integer getOrder() {
 		return order;
 	}
 
-	public static void setOrder(Integer order) {
-		Product.order = order;
+	public  void setOrder(Integer order) {
+		this.order = order;
 	}
 
 	public  int getTotal() {
@@ -119,14 +119,6 @@ public class Product {
 
 
 	
-	
-	
 
-
-	
-
-	
-	
-   
 
 }

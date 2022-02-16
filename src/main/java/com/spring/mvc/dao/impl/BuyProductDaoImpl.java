@@ -11,6 +11,8 @@ import com.spring.mvc.model.Product;
 
 @Repository
 public class BuyProductDaoImpl implements BuyProductDao{
+	
+	private static int inc=1;
 
 	List<Product> productsList = new ArrayList<Product>();
 	
@@ -41,16 +43,14 @@ public class BuyProductDaoImpl implements BuyProductDao{
 		System.out.println("vamos a imprimir los precios");
 		for(Product alias:backupBuyProducts) {
 			alias.setTotal(sum);
+			alias.setOrder(inc);
 			System.out.println(alias);
 		}
 		
-//		for(int i=0;i<backupBuyProducts.size();i++) {
-//			backupBuyProducts.get(i).setTotal(sum);
-//			System.out.println(backupBuyProducts.get(i));
-//		}
+
 		System.out.println("prices was finish to print");
+		inc++;
 		
-		Product.setOrder(Product.getOrder()+1);
 		addList(backupBuyProducts);
 		
 		productsList = new ArrayList<Product>();
