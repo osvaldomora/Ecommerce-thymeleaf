@@ -35,10 +35,14 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	
 	@Override
 	public void clearBuyProduct() {
+		
+		
 		backupBuyProducts=productsList;
-//		for(Product alias:productsList) {
-//			backupBuyProducts.add(alias);
-//		}
+	long sum=	backupBuyProducts.stream().mapToLong(x -> x.getProductPrice()).sum();
+	System.out.println("la suma es:"+sum);
+		for(Product alias:backupBuyProducts) {
+			alias.setProductPrice(sum);;
+		}
 		
 //		
 		
