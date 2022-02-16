@@ -35,11 +35,10 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	@Override
 	public void clearBuyProduct() {
 		
-		
 		backupBuyProducts=productsList;
-	long sum=	backupBuyProducts.stream().mapToLong(x -> x.getProductPrice()).sum();
-	System.out.println("la suma es:"+sum);
-	System.out.println("vamos a imprimir los precios");
+		int sum= (int)	backupBuyProducts.stream().mapToLong(x -> x.getProductPrice()).sum();
+		System.out.println("la suma es:"+sum);
+		System.out.println("vamos a imprimir los precios");
 		for(Product alias:backupBuyProducts) {
 			alias.setTotal(sum);
 			System.out.println(alias);
@@ -50,8 +49,6 @@ public class BuyProductDaoImpl implements BuyProductDao{
 //			System.out.println(backupBuyProducts.get(i));
 //		}
 		System.out.println("prices was finish to print");
-		
-//		
 		
 		Product.setOrder(Product.getOrder()+1);
 		addList(backupBuyProducts);

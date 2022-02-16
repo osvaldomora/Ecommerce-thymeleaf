@@ -12,7 +12,7 @@ public class Product {
 	private Long productQuantity;
 	private String imagen="no-image.png";
 	private Boolean enabled;
-	private  Long total;
+	private int total;
 	private static Integer order=1;
 	
 	
@@ -105,7 +105,7 @@ public class Product {
 		return total;
 	}
 
-	public  void setTotal(Long total) {
+	public  void setTotal(int total) {
 		this.total = total;
 	}
 

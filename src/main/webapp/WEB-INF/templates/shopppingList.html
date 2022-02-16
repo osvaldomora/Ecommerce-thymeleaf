@@ -48,8 +48,12 @@
 
 				<div class="card-body">
 					<form th:action="@{/getProducts}" method="get">
-
-						<table class="table table-striped table-bordered ">
+						
+						<!-- <label >Order: </label> -->
+						<table th:each="prod: ${productsList}" class="table table-striped table-bordered ">
+							<tr>
+								<th class="text-center" colspan="4" th:text="Order:  + ${prod[0].order}"></th>
+							</tr>
 							<tr>
 								<th>Product Name</th>
 								<th>Product Category</th>
@@ -58,25 +62,28 @@
 
 							</tr>
 
-							<tr th:each="prod: ${productsList} ">
+							<tr th:each="prods: ${prod} ">
 
-								<td th:text="${prod.productName}"></td>
-								<td th:text="${prod.productCategory}"></td>
-								<td class="price" th:text="${prod.productPrice}"></td>
+								<td th:text="${prods.productName}"></td>
+								<td th:text="${prods.productCategory}"></td>
+								<td class="price" th:text="${prods.productPrice}"></td>
 
 								<td><img
-									th:src="@{/resources/images/{img} ( img=${prod.imagen} )  }"
+									th:src="@{/resources/images/{img} ( img=${prods.imagen} )  }"
 									width="136" height="136"></td>
-
-
 							</tr>
-							
-<!--    <tr th:each="i: ${array}"> -->
-<!--         <td th:each="item: ${j}"> -->
-<!--             <span th:text="${item}"></span > -->
-<!--         </td> -->
-<!--     <tr> -->
-
+							<tr>
+						        <td/>
+						        <td>Total: </td>
+						        <td><b th:text="${prod[0].total}"></b></td>
+						        <td/>
+						    </tr>
+							<!-- <tr th:each="prods: ${prod}">
+								<td></td>
+								<td>Total: </td>
+								<td th:text="${prods.total}"></td>
+								<td></td>
+							</tr> -->
 						</table>
 						
 						<div class="float-end">
