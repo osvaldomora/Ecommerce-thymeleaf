@@ -26,7 +26,7 @@ public class ProductDaoImpl implements ProductDao{
 		
 		Product product2 = new  Product();
 		product2.setProductId(2);
-		product2.setProductName("Patito");
+		product2.setProductName("Huawei");
 		product2.setProductCategory("phone");
 		product2.setProductPrice(300L);
 		product2.setProductQuantity(8L);
@@ -47,7 +47,7 @@ public class ProductDaoImpl implements ProductDao{
 		
 		Product product5 = new  Product();
 		product5.setProductId(5);
-		product5.setProductName("White Patito ");
+		product5.setProductName("Huawei");
 		product5.setProductCategory("phone");
 		product5.setProductPrice(200L);
 		product5.setProductQuantity(18L);
