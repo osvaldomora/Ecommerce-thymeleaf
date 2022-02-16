@@ -12,6 +12,6 @@ public interface BuyProductDao {
 	
 	public void clearBuyProduct();
 	
-	public List<Product> GetBuyProduct(); 
+	public List<List<Product>>  GetBuyProduct(); 
 
 }

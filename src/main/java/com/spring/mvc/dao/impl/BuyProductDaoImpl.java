@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mvc.dao.BuyProductDao;
+import com.spring.mvc.model.Order;
 import com.spring.mvc.model.Product;
 
 
@@ -15,10 +16,12 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	List<Product> productsList = new ArrayList<Product>();
 	
 	List<Product> backupBuyProducts = new ArrayList<Product>();
+	
+    List<List<Product>> registerBuyProducts = new ArrayList<List<Product>>();
 
 	@Override
 	public void saveBuyProducts(List<Product> products) {
-		for(Product alias: products)
+		for(Product alias: products)  
 			productsList.add(alias);
 		
 	}
@@ -31,19 +34,26 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	
 	@Override
 	public void clearBuyProduct() {
+		backupBuyProducts=productsList;
+//		for(Product alias:productsList) {
+//			backupBuyProducts.add(alias);
+//		}
+//		
+		addList(backupBuyProducts);
 		
-		for(Product alias:productsList) {
-			backupBuyProducts.add(alias);
-		}
 		productsList = new ArrayList<Product>();
 		
 	}
 	
-	@Override
-	public List<Product> GetBuyProduct() {
-	
+	private void addList(List<Product> backupBuyProducts) {
+		registerBuyProducts.add(backupBuyProducts);
 		
-		return backupBuyProducts;
+	}
+
+	@Override
+	public List<List<Product>>  GetBuyProduct() {	
+
+		return registerBuyProducts;
 		
 	}
 
