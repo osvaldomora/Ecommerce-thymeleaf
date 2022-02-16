@@ -21,9 +21,10 @@ public class BuyProductDaoImpl implements BuyProductDao{
 
 	@Override
 	public void saveBuyProducts(List<Product> products) {
-		for(Product alias: products)  
+		for(Product alias: products) { 
+//			alias.setOrder(1);
 			productsList.add(alias);
-		
+		}
 	}
 
 	@Override
@@ -38,7 +39,10 @@ public class BuyProductDaoImpl implements BuyProductDao{
 //		for(Product alias:productsList) {
 //			backupBuyProducts.add(alias);
 //		}
+		
 //		
+		
+		Product.setOrder(Product.getOrder()+1);
 		addList(backupBuyProducts);
 		
 		productsList = new ArrayList<Product>();

@@ -12,6 +12,7 @@ public class Product {
 	private Long productQuantity;
 	private String imagen="no-image.png";
 	private Boolean enabled;
+	private static Integer order=0;
 	
 	
 	
@@ -91,15 +92,24 @@ public class Product {
 		this.enabled = enabled;
 	}
 
+	public static Integer getOrder() {
+		return order;
+	}
+
+	public static void setOrder(Integer order) {
+		Product.order = order;
+	}
 
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productCategory="
 				+ productCategory + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity
-				+ ", imagen=" + imagen + ", enabled=" + enabled + "]";
+				+ ", imagen=" + imagen + ", enabled=" + enabled + ", order=" + order + "]";
 	}
 
-	
 
+	
+	
+   
 
 }
