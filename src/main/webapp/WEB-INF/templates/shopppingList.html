@@ -24,9 +24,9 @@
 
 	<main role="main">
 		<!-- Main jumbotron for a primary marketing message or call to action th:object="${search}"  th:field="*{productCategory}"  -->
-		<div class="jumbotron">
-			<div class="container">
-				<h3>search product.</h3>
+		
+			<div class="container-fluid py-5">
+				<h3 class="display-5 fw-bold">search product.</h3>
 
 				<form class="form-inline" th:action="@{/search}" method="get">
 					<input type="text" class="form-control mb-3" name="productName"
@@ -35,7 +35,7 @@
 					<button type="submit" class="btn btn-primary mb-3">search</button>
 				</form>
 			</div>
-		</div>
+		
 		<hr>
 		<hr>
 		<div class="container">
@@ -74,6 +74,7 @@
 						</table>
 						
 						<div class="float-end">
+							<label>Total: </label>
 							<input type="number" id="total_input" readonly>
 						</div>
 						
@@ -108,27 +109,7 @@
 			$("#total_input").val(sum);
 			
 			console.log(sum);
-		    /* $("#table_routes tr").click(function(){
-		 	    let result = '';
-		 	   	$(this).find('input[type=hidden]').each(function(){
-		 		    result += $(this).attr('name')+'='+$(this).val()+'&'
-		 		})
-		 		console.log(result);
-			    $.post('rides', result, function(responseText) {
-					console.log(responseText)
-				});
-		 	   	$.ajax({
-		 	        type: "POST",
-		 	        url: "/rides",
-		 	        data: result,
-		 	        success: function (data){
-		 	          console.log(data)
-		 	        },
-		 	        error: function (data) {
-		 	          console.log('Error:', data);
-		 	        }
-		 	    });
-		   	}); */
+		   
 		});
 	</script>
 </body>

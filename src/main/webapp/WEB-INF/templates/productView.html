@@ -24,8 +24,8 @@
 
 	<main role="main">
 	      <!-- Main jumbotron for a primary marketing message or call to action th:object="${search}"  th:field="*{productCategory}"  -->
-      <div class="jumbotron">
-        <div class="container">
+      
+        <div class="container-fluid py-5">
           <h3>search product.</h3>
          
           <form class="form-inline" th:action="@{/search}" method="get">
@@ -34,7 +34,7 @@
             <button type="submit" class="btn btn-primary mb-3">search</button>
           </form>
         </div>
-      </div>
+      
       <hr>
 		<hr>
 		<div class="container">
