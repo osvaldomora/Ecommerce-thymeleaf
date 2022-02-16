@@ -12,8 +12,8 @@ public class Product {
 	private Long productQuantity;
 	private String imagen="no-image.png";
 	private Boolean enabled;
-	private static int total=0;
-	private static Integer order=0;
+	private  Long total;
+	private static Integer order=1;
 	
 	
 	
@@ -101,20 +101,24 @@ public class Product {
 		Product.order = order;
 	}
 
-	public static int getTotal() {
+	public  int getTotal() {
 		return total;
 	}
 
-	public static void setTotal(int total) {
-		Product.total = total;
+	public  void setTotal(Long total) {
+		this.total = total;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productCategory="
 				+ productCategory + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity
-				+ ", imagen=" + imagen + ", enabled=" + enabled + "]";
+				+ ", imagen=" + imagen + ", enabled=" + enabled + ", order=" + order + ", total=" + total+ "]";
+	
 	}
+
+
+	
 	
 	
 

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mvc.dao.BuyProductDao;
-import com.spring.mvc.model.Order;
 import com.spring.mvc.model.Product;
 
 
@@ -40,9 +39,17 @@ public class BuyProductDaoImpl implements BuyProductDao{
 		backupBuyProducts=productsList;
 	long sum=	backupBuyProducts.stream().mapToLong(x -> x.getProductPrice()).sum();
 	System.out.println("la suma es:"+sum);
+	System.out.println("vamos a imprimir los precios");
 		for(Product alias:backupBuyProducts) {
-			alias.setProductPrice(sum);;
+			alias.setTotal(sum);
+			System.out.println(alias);
 		}
+		
+//		for(int i=0;i<backupBuyProducts.size();i++) {
+//			backupBuyProducts.get(i).setTotal(sum);
+//			System.out.println(backupBuyProducts.get(i));
+//		}
+		System.out.println("prices was finish to print");
 		
 //		
 		
