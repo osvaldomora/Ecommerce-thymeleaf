@@ -1,5 +1,8 @@
 package com.spring.mvc.controller;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,54 @@ public class UserController {
 	@RequestMapping("/")
 	public String showRegistrationPage(Model model) {
 		System.out.println("home");
+		methodTest();
 		return "registration";
+	}
+	
+	private void methodTest() {
+		
+
+
+		// crear sessionFactory:lee archivos de configuracion, crea objetos de tipo
+		// sesion
+		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
+				.buildSessionFactory();
+
+		// crearSession:conecta con la base de datos y guardaa y muestra los objetos del
+		// mapeo
+		Session session = sFactory.openSession();
+		try {
+			// crar objeto cliente
+			User user = new User(1,"jkl2", "morales", "dolores","123");
+
+			// EJECUTAR TRANSACCION
+			System.out.println("comenzando transaccion");
+			// comenzando Transaccion
+			session.beginTransaction();
+			System.out.println("guardando transaccion,value id:" + user.getUserId());
+			// guardando objetos en base de datos
+			session.save(user);
+
+			// haciendo comit exitoso
+			System.out.println(
+					"commit si se ejecuta todo salio bien datos del cliente despues de session.save:" + user);// estoy
+																													// obteniendo
+																													// del																											// base
+																													// de
+																													// datos
+			session.getTransaction().commit();
+			System.out.println();
+			
+
+			session.close();
+			sFactory.close();
+		} catch (Exception e) {
+			System.out.println("se genero un error");
+			e.printStackTrace();
+		}
+
+	
+		
 	}
 	
 	@PostMapping("/registration")//@ModelAttribute received object from de view, model is use to send data to view
