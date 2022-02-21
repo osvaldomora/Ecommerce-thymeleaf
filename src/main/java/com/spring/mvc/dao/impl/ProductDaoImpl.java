@@ -4,16 +4,62 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mvc.dao.ProductDao;
 import com.spring.mvc.model.Product;
+import com.spring.mvc.model.User;
 
 
 @Repository
 public class ProductDaoImpl implements ProductDao{
 
 	List<Product> productsList = new ArrayList();
+
+	
+	@Override
+	public List<Product> getProductsHibernate(){
+		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Product.class)
+				.buildSessionFactory();
+
+
+		Session session = sFactory.openSession();
+		List<Product> results = null;
+		try {
+			session.beginTransaction();
+			
+			String hql = "FROM Product";
+			System.out.println("este es el query: " + hql);	
+			//Query query = session.createQuery(hql);
+		
+			Query query = session.createQuery(hql);  
+			//query.setParameter("n", name);
+			//List list=query.list();
+			
+			results = query.getResultList();
+			
+			//System.out.println("tamaño: " + results.get(0));
+			
+			
+			
+			session.close();
+			sFactory.close();
+			return results;
+		} catch (Exception e) {
+			System.out.println("se genero un error");
+			e.printStackTrace();
+		}
+		
+		return results;
+		//return productsList;
+
+		
+	}
+	
 	@Override
 	public List<Product> getProducts() {
 		// TODO Auto-generated method stub

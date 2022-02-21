@@ -24,14 +24,11 @@ public class UserController {
 	@RequestMapping("/")
 	public String showRegistrationPage(Model model) {
 		System.out.println("home");
-		methodTest();
+		//methodTest();
 		return "registration";
 	}
 	
 	private void methodTest() {
-		
-
-
 		// crear sessionFactory:lee archivos de configuracion, crea objetos de tipo
 		// sesion
 		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)

@@ -29,37 +29,24 @@ public class Product {
 	private Boolean enabled;
 	@Transient
 	private int total;
-	@Column
+	@Transient
 	private  Integer order=0;
 	
 	
+	public Product() {
+
+	}
 	
-	public Product(Integer productId, String productName, String productCategory, Long productPrice,
-			Long productQuantity, String imagen, Boolean enabled) {
+	public Product(Integer productId, String productName, String productCategory, int i,
+			int j, String imagen, Boolean enabled) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productCategory = productCategory;
-		this.productPrice = productPrice;
-		this.productQuantity = productQuantity;
+		this.productPrice = (long) i;
+		this.productQuantity = (long) j;
 		this.imagen = imagen;
 		this.enabled = enabled;
-	}
-	
-	public Product(Integer productId, String productName, String productCategory, Long productPrice,
-			Long productQuantity, String imagen) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.productCategory = productCategory;
-		this.productPrice = productPrice;
-		this.productQuantity = productQuantity;
-		this.imagen = imagen;
-		
-	}
-	
-	public Product() {
-	
 	}
 
 

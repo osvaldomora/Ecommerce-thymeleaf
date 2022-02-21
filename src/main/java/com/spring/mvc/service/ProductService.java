@@ -14,4 +14,6 @@ public interface ProductService {
 	
 	public List<Product> getBuyProducts();
 
+	List<Product> getProductsHibernate();
+
 }

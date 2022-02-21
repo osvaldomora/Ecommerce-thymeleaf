@@ -46,6 +46,12 @@ public class ProductServiceImpl implements ProductService {
 		return buyProductDao.getBuyProducts();
 	}
 
+	@Override
+	public List<Product> getProductsHibernate() {
+		// TODO Auto-generated method stub
+		return productDao.getProductsHibernate();
+	}
+
 
 
 }

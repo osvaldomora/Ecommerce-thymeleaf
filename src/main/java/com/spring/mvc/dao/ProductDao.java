@@ -11,4 +11,6 @@ public interface ProductDao {
 
 	List<Product> getProducts();
 
+	List<Product> getProductsHibernate();
+
 }

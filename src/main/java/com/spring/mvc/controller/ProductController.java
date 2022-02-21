@@ -33,16 +33,49 @@ public class ProductController {
 
 	@GetMapping("/getProducts")
 	public String getAllProducts(Model model) {
-		List<Product> productsList = productService.getProductList();
+		
+		List<Product> productsList = productService.getProductsHibernate();
 		ProductDto productDto = new ProductDto(productsList);
 		model.addAttribute("productDto", productDto);
 	
-		
+		//methodTest();
 
 		return "productView";
 	}
+	
+	private void methodTest() {
+		// crear sessionFactory:lee archivos de configuracion, crea objetos de tipo
+		// sesion
+		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Product.class)
+				.buildSessionFactory();
 
+		// crearSession:conecta con la base de datos y guardaa y muestra los objetos del
+		// mapeo
+		Session session = sFactory.openSession();
+		try {
+			// crar objeto cliente
+			Product product = new Product(5,"White patito", "phone", 400, 18, "no-image.png", true);
 
+			// EJECUTAR TRANSACCION
+			System.out.println("comenzando transaccion");
+			// comenzando Transaccion
+			session.beginTransaction();
+			// guardando objetos en base de datos
+			session.save(product);
+
+			// haciendo comit exitoso
+			System.out.println(
+					"commit si se ejecuta todo salio bien datos del cliente despues de session.save:" + product);
+			session.getTransaction().commit();
+			System.out.println();
+			
+			session.close();
+			sFactory.close();
+		} catch (Exception e) {
+			System.out.println("se genero un error");
+			e.printStackTrace();
+		}
+	}
 
 	@GetMapping("/getSelectProducts")
 	public String getSelectProducts(@ModelAttribute ProductDto productDto, Model model) {

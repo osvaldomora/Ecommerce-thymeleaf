@@ -22,6 +22,11 @@ public class User {
 	private String email;
 	@Column
 	private String phoneNo;
+	
+	public User() {
+
+	}
+	
 	public Integer getUserId() {
 		return userId;
 	}
