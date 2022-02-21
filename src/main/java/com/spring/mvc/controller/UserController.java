@@ -21,6 +21,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	SessionFactory sFactory;
 	@RequestMapping("/")
 	public String showRegistrationPage(Model model) {
 		System.out.println("home");
@@ -34,8 +37,8 @@ public class UserController {
 
 		// crear sessionFactory:lee archivos de configuracion, crea objetos de tipo
 		// sesion
-		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
-				.buildSessionFactory();
+//		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
+//				.buildSessionFactory();
 
 		// crearSession:conecta con la base de datos y guardaa y muestra los objetos del
 		// mapeo

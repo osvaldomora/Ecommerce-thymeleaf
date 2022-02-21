@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -19,7 +19,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.spring.mvc")
-public  class MvcWebConfig implements WebMvcConfigurer  {//extends WebMvcConfigurerAdapter to spring 4
+public  class MvcWebConfig extends WebMvcConfigurerAdapter  {//extends WebMvcConfigurerAdapter to spring 4
 	   @Autowired
 	   private ApplicationContext applicationContext;
 
