@@ -1,6 +1,7 @@
 package com.spring.mvc.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -43,10 +44,9 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	public void clearBuyProduct() {
 		
 		backupBuyProducts=productsList;
-		//I am going to create a order
-		 method(backupBuyProducts); 
 		
 		
+	/*	
 		int sum= (int)	backupBuyProducts.stream().mapToLong(x -> x.getProductPrice()).sum();
 		System.out.println("la suma es:"+sum);
 		
@@ -56,13 +56,16 @@ public class BuyProductDaoImpl implements BuyProductDao{
 			alias.setOrder(inc);
 			System.out.println(alias);
 		}
+		*/
 		
+		//I am going to create a order
+		 method(backupBuyProducts); //
 
 		System.out.println("prices was finish to print");
 		inc++;
 		
-		addList(backupBuyProducts);
-		
+
+//		addList(backupBuyProducts);
 		productsList = new ArrayList<Product>();
 		
 	}
@@ -70,10 +73,12 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	private void method(List<Product> backupBuyProducts2) {
 		
 
-		System.out.println("alias IS A TEST a asdasd TO ssdd");
+		System.out.println("AQWWR IS A TEST a asdasd TO ssdd");
 		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Order.class).addAnnotatedClass(Product.class)
 				.buildSessionFactory();
 
+		registerBuyProducts = new ArrayList<List<Product>>();
+		
 		Session session = sFactory.openSession();
 		List<Order> results = null;
 		try {
@@ -111,15 +116,75 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	}
 
 	@Override
-	public List<List<Product>>  GetBuyProduct() {	
-		List<Product> butList =  getBuyProductsHibernate();
-		return registerBuyProducts;
+	public List<Order>  GetBuyProduct() {	
+
+//		getBuyProductsHibernate();//
+		
+		
+		return getBuyProductsHibernate();
 		
 	}
 
-	private List<Product> getBuyProductsHibernate() {
-		// TODO Auto-generated method stub
-		return null;
+	private List<Order> getBuyProductsHibernate() {
+    
+
+		System.out.println("TYING AGAIN GOIG TO FINISH");
+		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Order.class).addAnnotatedClass(Product.class)
+				.buildSessionFactory();
+
+		Session session = sFactory.openSession();
+		List<Order> results = null;
+		try {
+
+			session.beginTransaction();
+			
+			String hql = "FROM Order";
+			System.out.println("este es el query: " + hql);	
+			
+		
+			Query query = session.createQuery(hql);  		
+			results = query.getResultList();
+			System.out.println("PRINT new rr RESULTS");
+			results.stream().forEach(x->System.out.println(x));
+		/*	
+			System.out.println("new values");
+			for(Order alias: results) {
+				int sum= (int)	alias.getProducts().stream().mapToLong(x -> x.getProductPrice()).sum();
+				System.out.println("THE NEW SUM IS :"+sum);
+				List<Product> listProduct = new ArrayList<Product>();
+				listProduct=alias.getProducts();
+				for(Product alias2: listProduct) {
+					alias2.setTotal(sum);
+					alias2.setOrder(alias.getOrderId());
+				}
+				sum=0;
+				System.out.println(alias);
+				System.out.println("GGGGGGGGGGGGGGHHHHHHHHHH");
+				System.out.println(listProduct);
+				
+//				registerBuyProducts.add(listProduct);
+				
+							
+				
+			}*/
+			System.out.println("producto registrado");
+			registerBuyProducts.stream().forEach(x->System.out.println(x));
+			
+			
+			session.close();
+			sFactory.close();
+			
+		
+			
+		} catch (Exception e) {
+			System.out.println("ERROR WAS GENERATED");
+			e.printStackTrace();
+		}
+	
+		
+	
+		
+		return results;
 	}
 
 
