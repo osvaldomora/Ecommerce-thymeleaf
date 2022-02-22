@@ -95,7 +95,7 @@ public class ProductController {
 		System.out.println("shoppingList");
 
 		List<Order> productsList = buyProductDao.GetBuyProduct();
-		System.out.println("IMPRIMIENDO VALORES WWW");
+		System.out.println("PRINTING VALUES");
 		System.out.println(productsList);
 		model.addAttribute("productsList", productsList);
 		return "shopppingList";

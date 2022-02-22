@@ -33,6 +33,39 @@ public class UserController {
 		return "registration";
 	}
 	
+
+	
+	@PostMapping("/registration")//@ModelAttribute received object from de view, model is use to send data to view
+	public String doRegistration(@ModelAttribute User user, Model model){
+		System.out.println("before save user:" + user);
+		userService.saveUser(user);
+		Credential credential = new Credential();
+		model.addAttribute("credential", credential);
+      
+		return "login";
+		
+	}
+	
+	@PostMapping("/login")
+	public String authenticateUser(@ModelAttribute Credential credential) {
+	User user =	userService.authenticateUser(credential.getName(), credential.getPassword());
+	if(ObjectUtils.isEmpty(user)) {
+		return "loginFailure";
+		
+	}
+	
+	
+	return "redirect:/getProducts";
+	}
+	
+/*	@RequestMapping("/logout")
+	public String logOut(Model model,HttpServletRequest request) {
+		System.out.println("I will close sesion");
+		HttpSession sesion = request.getSession();
+		sesion.removeAttribute("usuario");
+		return "login";
+	}*/
+	
 	private void methodTest() {
 		
 
@@ -94,36 +127,5 @@ public class UserController {
 	
 		
 	}
-	
-	@PostMapping("/registration")//@ModelAttribute received object from de view, model is use to send data to view
-	public String doRegistration(@ModelAttribute User user, Model model){
-		System.out.println("before save user:" + user);
-		userService.saveUser(user);
-		Credential credential = new Credential();
-		model.addAttribute("credential", credential);
-      
-		return "login";
-		
-	}
-	
-	@PostMapping("/login")
-	public String authenticateUser(@ModelAttribute Credential credential) {
-	User user =	userService.authenticateUser(credential.getName(), credential.getPassword());
-	if(ObjectUtils.isEmpty(user)) {
-		return "loginFailure";
-		
-	}
-	
-	
-	return "redirect:/getProducts";
-	}
-	
-/*	@RequestMapping("/logout")
-	public String logOut(Model model,HttpServletRequest request) {
-		System.out.println("I will close sesion");
-		HttpSession sesion = request.getSession();
-		sesion.removeAttribute("usuario");
-		return "login";
-	}*/
 
 }

@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="Product")
@@ -27,10 +26,10 @@ public class Product {
 	private String imagen="no-image.png";
 	@Column
 	private Boolean enabled;
-	@Transient
-	private int total;
-	@Transient
-	private  Integer order=0;
+//	@Transient
+//	private int total;
+//	@Transient
+//	private  Integer order=0;
 	
 	
 	public Product() {
@@ -97,29 +96,13 @@ public class Product {
 		this.enabled = enabled;
 	}
 
-	public  Integer getOrder() {
-		return order;
-	}
-
-	public  void setOrder(Integer order) {
-		this.order = order;
-	}
-
-	public  int getTotal() {
-		return total;
-	}
-
-	public  void setTotal(int total) {
-		this.total = total;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productCategory="
 				+ productCategory + ", productPrice=" + productPrice + ", productQuantity=" + productQuantity
-				+ ", imagen=" + imagen + ", enabled=" + enabled + ", order=" + order + ", total=" + total+ "]";
-	
+				+ ", imagen=" + imagen + ", enabled=" + enabled + "]";
 	}
+
 
 
 	

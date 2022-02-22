@@ -1,7 +1,6 @@
 package com.spring.mvc.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -18,7 +17,7 @@ import com.spring.mvc.model.Product;
 @Repository
 public class BuyProductDaoImpl implements BuyProductDao{
 	
-	private static int inc=1;
+
 
 	List<Product> productsList = new ArrayList<Product>();
 	
@@ -29,14 +28,13 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	@Override
 	public void saveBuyProducts(List<Product> products) {
 		for(Product alias: products) { 
-//			alias.setOrder(1);
+
 			productsList.add(alias);
 		}
 	}
 
 	@Override
 	public List<Product> getBuyProducts() {
-//		productsList.forEach(x->System.out.println(x));
 		return productsList;
 	}
 	
@@ -44,26 +42,13 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	public void clearBuyProduct() {
 		
 		backupBuyProducts=productsList;
-		
-		
-	/*	
-		int sum= (int)	backupBuyProducts.stream().mapToLong(x -> x.getProductPrice()).sum();
-		System.out.println("la suma es:"+sum);
-		
-		System.out.println("vamos a imprimir los precios");
-		for(Product alias:backupBuyProducts) {
-			alias.setTotal(sum);
-			alias.setOrder(inc);
-			System.out.println(alias);
-		}
-		*/
+
 		
 		//I am going to create a order
 		 method(backupBuyProducts); //
 
 		System.out.println("prices was finish to print");
-		inc++;
-		
+
 
 //		addList(backupBuyProducts);
 		productsList = new ArrayList<Product>();
@@ -73,7 +58,7 @@ public class BuyProductDaoImpl implements BuyProductDao{
 	private void method(List<Product> backupBuyProducts2) {
 		
 
-		System.out.println("AQWWR IS A TEST a asdasd TO ssdd");
+		
 		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Order.class).addAnnotatedClass(Product.class)
 				.buildSessionFactory();
 
@@ -110,17 +95,12 @@ public class BuyProductDaoImpl implements BuyProductDao{
 		
 	}
 
-	private void addList(List<Product> backupBuyProducts) {
-		registerBuyProducts.add(backupBuyProducts);
-		
-	}
+
 
 	@Override
 	public List<Order>  GetBuyProduct() {	
 
-//		getBuyProductsHibernate();//
-		
-		
+	
 		return getBuyProductsHibernate();
 		
 	}
@@ -144,31 +124,21 @@ public class BuyProductDaoImpl implements BuyProductDao{
 		
 			Query query = session.createQuery(hql);  		
 			results = query.getResultList();
-			System.out.println("PRINT new rr RESULTS");
+			System.out.println("WEE new rr RESULTS");
 			results.stream().forEach(x->System.out.println(x));
-		/*	
-			System.out.println("new values");
+			
+			System.out.println("QQQQQQQ values");
 			for(Order alias: results) {
 				int sum= (int)	alias.getProducts().stream().mapToLong(x -> x.getProductPrice()).sum();
 				System.out.println("THE NEW SUM IS :"+sum);
-				List<Product> listProduct = new ArrayList<Product>();
-				listProduct=alias.getProducts();
-				for(Product alias2: listProduct) {
-					alias2.setTotal(sum);
-					alias2.setOrder(alias.getOrderId());
-				}
-				sum=0;
+				
+					alias.setTotal(sum);
+				
+				
 				System.out.println(alias);
-				System.out.println("GGGGGGGGGGGGGGHHHHHHHHHH");
-				System.out.println(listProduct);
-				
-//				registerBuyProducts.add(listProduct);
-				
-							
-				
-			}*/
-			System.out.println("producto registrado");
-			registerBuyProducts.stream().forEach(x->System.out.println(x));
+			
+			}
+
 			
 			
 			session.close();

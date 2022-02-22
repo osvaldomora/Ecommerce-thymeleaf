@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void saveUser(User user) {
 
-		//userDatabase.put(user.getName(), user);
+		
 		System.out.println(user.getName()+ "detail saved");
 		
 		// sesion
@@ -57,10 +57,7 @@ public class UserDaoImpl implements UserDao {
 	}
 	@Override
 	public User authenticateUser(String name, String password) {
-//		User user=userDatabase.get(name);
-//        if(user.getPassword().equals(password)) {
-//        	return user;
-//        }
+
 		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
 				.buildSessionFactory();
 
@@ -71,13 +68,9 @@ public class UserDaoImpl implements UserDao {
 			
 			String hql = "FROM User E WHERE E.name = :n";
 			System.out.println("este es el query: " + hql);
-			
-			//Query query = session.createQuery(hql);
-			
-			
+
 			Query query = session.createQuery(hql);  
 			query.setParameter("n", name);
-			//List list=query.list();
 			
 			
 			List<User> results = query.getResultList();

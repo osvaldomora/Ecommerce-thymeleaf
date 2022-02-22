@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="Order1")
@@ -31,7 +32,10 @@ public class Order {
 			)
 	private List<Product> products;
 
-
+    
+	
+	@Transient
+	private int total;
 	
 	
 	public Order() {
@@ -106,11 +110,35 @@ public class Order {
 
 
 
+	public int getTotal() {
+		return total;
+	}
+
+
+
+
+
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", name=" + name + ", products=" + products + "]";
+		return "Order [orderId=" + orderId + ", name=" + name + ", products=" + products + ", total=" + total + "]";
 	}
-	
+
+
+
+
+    
+     
+
 
 
         
