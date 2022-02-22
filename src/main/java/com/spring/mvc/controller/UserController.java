@@ -29,7 +29,7 @@ public class UserController {
 	@RequestMapping("/")
 	public String showRegistrationPage(Model model) {
 		System.out.println("home");
-//		methodTest();
+		//methodTest();
 		return "registration";
 	}
 	
@@ -57,8 +57,8 @@ public class UserController {
 			results = query.getResultList();
 			
 			results.stream().forEach(x->System.out.println(x));
-		/*	Product product = new Product(1,"White patito", "phone001", 400, 18, "no-image.png", true);
-			Product product2 = new Product(2,"White patito", "phone002", 400, 18, "no-image.png", true);
+			/*Product product = new Product(6,"White patito", "phone001", 400, 18, "no-image.png", true);
+			Product product2 = new Product(7,"White patito", "phone002", 400, 18, "no-image.png", true);
 			
 			Order order = new Order();
 			order.add(product);
@@ -66,8 +66,8 @@ public class UserController {
 			order.setName("as");
 			session.beginTransaction();
 			session.save(order);
-			session.getTransaction().commit();
-			*/
+			session.getTransaction().commit();*/
+			
 			/*
 			// crar objeto Producto
 			Product product = new Product(1,"White patito", "phone", 400, 18, "no-image.png", true);
