@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -32,15 +33,18 @@ public class ProductDaoImpl implements ProductDao{
 		try {
 			session.beginTransaction();
 			
-			String hql = "FROM Product";
-			System.out.println("este es el query: " + hql);	
-			//Query query = session.createQuery(hql);
-		
-			Query query = session.createQuery(hql);  
-			//query.setParameter("n", name);
-			//List list=query.list();
+			Criteria cr = session.createCriteria(Product.class);
+			List resultss = cr.list();
 			
-			results = query.getResultList();
+//			String hql = "FROM Product";
+//			System.out.println("este es el query: " + hql);	
+//			//Query query = session.createQuery(hql);
+//		
+//			Query query = session.createQuery(hql);  
+//			//query.setParameter("n", name);
+//			//List list=query.list();
+//			
+//			results = query.getResultList();
 			
 			//System.out.println("tamaño: " + results.get(0));
 			
@@ -48,7 +52,7 @@ public class ProductDaoImpl implements ProductDao{
 			
 			session.close();
 			sFactory.close();
-			return results;
+			return resultss;
 		} catch (Exception e) {
 			System.out.println("se genero un error");
 			e.printStackTrace();
