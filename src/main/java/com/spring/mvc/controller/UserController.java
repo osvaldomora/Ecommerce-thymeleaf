@@ -1,8 +1,11 @@
 package com.spring.mvc.controller;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.mvc.dto.Credential;
+import com.spring.mvc.model.Order;
+import com.spring.mvc.model.Product;
 import com.spring.mvc.model.User;
 import com.spring.mvc.service.UserService;
 
@@ -24,49 +29,68 @@ public class UserController {
 	@RequestMapping("/")
 	public String showRegistrationPage(Model model) {
 		System.out.println("home");
-		//methodTest();
+//		methodTest();
 		return "registration";
 	}
 	
 	private void methodTest() {
+		
+
 		// crear sessionFactory:lee archivos de configuracion, crea objetos de tipo
 		// sesion
-		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
+		
+		System.out.println("ASSD a asdasd TO ssdd");
+		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Order.class).addAnnotatedClass(Product.class)
 				.buildSessionFactory();
 
 		// crearSession:conecta con la base de datos y guardaa y muestra los objetos del
 		// mapeo
 		Session session = sFactory.openSession();
+		List<Order> results = null;
 		try {
-			// crar objeto cliente
-			User user = new User(1,"jkl2", "morales", "dolores","123");
+			
+			
+			String hql = "FROM Order";
+			System.out.println("este es el query: " + hql);	
+		
+			Query query = session.createQuery(hql);  
+			results = query.getResultList();
+			
+			results.stream().forEach(x->System.out.println(x));
+		/*	Product product = new Product(1,"White patito", "phone001", 400, 18, "no-image.png", true);
+			Product product2 = new Product(2,"White patito", "phone002", 400, 18, "no-image.png", true);
+			
+			Order order = new Order();
+			order.add(product);
+			order.add(product2);
+			order.setName("as");
+			session.beginTransaction();
+			session.save(order);
+			session.getTransaction().commit();
+			*/
+			/*
+			// crar objeto Producto
+			Product product = new Product(1,"White patito", "phone", 400, 18, "no-image.png", true);
 
 			// EJECUTAR TRANSACCION
 			System.out.println("comenzando transaccion");
 			// comenzando Transaccion
 			session.beginTransaction();
-			System.out.println("guardando transaccion,value id:" + user.getUserId());
 			// guardando objetos en base de datos
-			session.save(user);
+			session.save(product);
 
 			// haciendo comit exitoso
 			System.out.println(
-					"commit si se ejecuta todo salio bien datos del cliente despues de session.save:" + user);// estoy
-																													// obteniendo
-																													// del																											// base
-																													// de
-																													// datos
+					"commit si se ejecuta todo salio bien datos del cliente despues de session.save:" + product);
 			session.getTransaction().commit();
 			System.out.println();
-			
-
+			*/
 			session.close();
 			sFactory.close();
 		} catch (Exception e) {
 			System.out.println("se genero un error");
 			e.printStackTrace();
 		}
-
 	
 		
 	}
