@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,6 +81,7 @@ public class ProductController {
 	@GetMapping("/search")
 	public String buscar(@ModelAttribute("search") Product product, Model model) {
 		System.out.println("search by ss : " + product);
+		
 		//List<Product> productsList = productService.getProductList();
 		List<Product> productsList = productService.getProductsHibernate();
 		List<Product> productsFilter = productsList.stream()
@@ -117,6 +119,9 @@ public class ProductController {
 		
 		return "/productView";
 	}
+
+
+
 
 	@GetMapping("/shoppingList")
 	public String shoppingList(Model model) {

@@ -26,10 +26,7 @@ public class Product {
 	private String imagen="no-image.png";
 	@Column
 	private Boolean enabled;
-//	@Transient
-//	private int total;
-//	@Transient
-//	private  Integer order=0;
+
 	
 	
 	public Product() {

@@ -38,6 +38,10 @@ public class BuyProductDaoImpl implements BuyProductDao{
 		return productsList;
 	}
 	
+	
+	/**
+	 * clean the cart and also a order is generated
+	 */
 	@Override
 	public void clearBuyProduct() {
 		
@@ -45,7 +49,7 @@ public class BuyProductDaoImpl implements BuyProductDao{
 
 		
 		//I am going to create a order
-		 method(backupBuyProducts); //
+		 createOrder(backupBuyProducts); //
 
 		System.out.println("prices was finish to print");
 
@@ -55,7 +59,7 @@ public class BuyProductDaoImpl implements BuyProductDao{
 		
 	}
 	
-	private void method(List<Product> backupBuyProducts2) {
+	private void createOrder(List<Product> backupBuyProducts2) {
 		
 
 		
