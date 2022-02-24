@@ -1,3 +1,4 @@
 /target/
 /src/main/webapp/hibernate.cfg.xml
 src/main/webapp/hibernate.cfg.xml
+src/main/java/hibernate.cfg.xml
