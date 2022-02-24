@@ -7,12 +7,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.mvc.dto.Credential;
 import com.spring.mvc.model.Order;
@@ -45,6 +51,29 @@ public class UserController {
 		return "login";
 		
 	}
+	
+	
+	@ResponseBody
+	@PostMapping(value ="/registrationRest")
+	public ResponseEntity<Object> doRegistrationRest(@RequestBody User user){
+		System.out.println("In method");
+		userService.saveUser(user);
+		Credential credential = new Credential();
+ 
+		 return new ResponseEntity<>(user,  HttpStatus.ACCEPTED);
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/registrationRest")
+	public String doRegistrationRest2(){
+		System.out.println("In method");
+
+ 
+		 return "today will be thw best dah";
+		
+	}
+	
 	
 	@PostMapping("/login")
 	public String authenticateUser(@ModelAttribute Credential credential) {

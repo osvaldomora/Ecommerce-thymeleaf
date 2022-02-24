@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
-import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +16,6 @@ import com.spring.mvc.dao.BuyProductDao;
 import com.spring.mvc.dto.ProductDto;
 import com.spring.mvc.model.Order;
 import com.spring.mvc.model.Product;
-import com.spring.mvc.model.User;
 import com.spring.mvc.service.ProductService;
 
 
