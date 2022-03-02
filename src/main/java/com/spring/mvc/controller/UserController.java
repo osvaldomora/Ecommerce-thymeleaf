@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.mvc.model.FourWheeler;
+import com.spring.mvc.model.TwoWheeler;
+import com.spring.mvc.model.Vehicle;
+
 import com.spring.mvc.dto.Credential;
 import com.spring.mvc.model.Order;
 import com.spring.mvc.model.Product;
@@ -35,11 +39,42 @@ public class UserController {
 	@RequestMapping("/")
 	public String showRegistrationPage(Model model) {
 		System.out.println("home");
-		//methodTest();
+		vehicleMethod();
 		return "registration";
 	}
 	
+	private void vehicleMethod() {
+		System.out.println("ASSD a asdasd TO ssdd");
+		SessionFactory sFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Vehicle.class)
+				.addAnnotatedClass(TwoWheeler.class)
+				.addAnnotatedClass(FourWheeler.class)
+				.buildSessionFactory();
+		Session session = sFactory.openSession();
+		try {
+			Vehicle vehicle = new Vehicle();
+			vehicle.setVehicleName("Car");
+			
+			TwoWheeler bike = new TwoWheeler();
+			bike.setVehicleName("Bike");
+			bike.setSteeringHandle("Bike Steering Handle");
+			
+			FourWheeler car = new FourWheeler();
+			car.setVehicleName("Porsche");
+			car.setSteeringWheel("Porsche Steering Wheel");
+			/*Product product = new Product(6,"White patito", "phone001", 400, 18, "no-image.png", true);
+			Product product2 = new Product(7,"White patito", "phone002", 400, 18, "no-image.png", true);
+			*/
 
+			session.beginTransaction();
+			session.save(vehicle);
+			session.save(bike);
+			session.save(car);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("se genero un error");
+			e.printStackTrace();
+		}
+	}
 	
 	@PostMapping("/registration")//@ModelAttribute received object from de view, model is use to send data to view
 	public String doRegistration(@ModelAttribute User user, Model model){
